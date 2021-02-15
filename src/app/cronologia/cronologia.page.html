@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-item color="danger">
+      <ion-icon name="football-outline"></ion-icon>
+      <ion-title slot="end">Cronología de goles</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item color="light">
+    <ion-label slot="start" color="primary">{{cronologia.$casa}}</ion-label>
+    <ion-label slot="end" color="danger">{{cronologia.$visitante}}</ion-label>
+  </ion-item>
+
+  <ion-item color="success">
+  <ion-item slot="start" color="success">
+  <ion-grid>
+
+    <ion-row *ngFor="let item of cronologia.$minGolesCasa">
+      <ion-col>
+        <ion-label>{{item}} </ion-label>
+        <ion-icon name="football-outline"></ion-icon>
+      </ion-col>
+
+      <ion-col size-sm="16">
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-item>
+
+  <ion-item slot="end" color="success">
+  <ion-grid>
+    <ion-row *ngFor="let item of cronologia.$minGolesFuera">
+      <ion-col>
+        <ion-col> </ion-col>
+      </ion-col>
+
+      <ion-col size-sm="16">
+        <ion-label>{{item}} </ion-label>
+        <ion-icon name="football-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>
+</ion-item>
+
+<ion-item color="light">
+  <ion-icon color="warning" slot="start" name="calendar-outline"></ion-icon>
+  <ion-label  color="warning">Dia: {{cronologia.$fecha.$diaAnual}} {{cronologia.$fecha.$diaMes}} 
+    Mes: {{cronologia.$fecha.$diaSemana}} Semana: {{cronologia.$fecha.$semana}}</ion-label>
+</ion-item>
+
+</ion-content>

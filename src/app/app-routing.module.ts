@@ -8,8 +8,20 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'jornada',
     pathMatch: 'full'
+  },
+  {
+    path: 'jornada',
+    loadChildren: () => import('./jornada/jornada.module').then( m => m.JornadaPageModule)
+  },
+  {
+    path: 'clasificacion',
+    loadChildren: () => import('./clasificacion/clasificacion.module').then( m => m.ClasificacionPageModule)
+  },
+  {
+    path: 'cronologia',
+    loadChildren: () => import('./cronologia/cronologia.module').then( m => m.CronologiaPageModule)
   },
 ];
 

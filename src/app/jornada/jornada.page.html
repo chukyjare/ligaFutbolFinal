@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-item color="green">
+      <ion-icon name="earth-outline"></ion-icon>
+      <ion-title slot="end">{{liga.$nombre}}</ion-title>
+    </ion-item>
+  </ion-toolbar>
+
+  <ion-segment value="jornada" color="success" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="jornada">
+      <ion-label color="medium">Jornadas</ion-label>
+      <ion-icon name="analytics"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="clasificacion">
+      <ion-label color="medium">Clasificación</ion-label>
+      <ion-icon name="list"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  
+</ion-header>
+
+
+<ion-content *ngIf="visible" >  
+  <ion-item class="ion-text-center" color="success"><ion-label>JORNADA {{numJornada}}</ion-label></ion-item>
+  <ion-card *ngFor="let item of resultado" (click)="pasaDato(item)">
+    <ion-card-header class="ion-text-center">
+        <ion-label>{{item.$casa}} : {{item.$visitante}}</ion-label>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col class="ion-text-center" >
+            {{item.$marcadorLocal.$goles}}:{{item.$marcadorVisitante.$goles}}
+        </ion-col>
+      </ion-row>     
+    </ion-card-content>   
+  </ion-card>
+
+</ion-content>
+
+<ion-content *ngIf="!visible">
+<!-- Clasificacion -->
+<ion-item class="ion-text-center" color="success"><ion-label>JORNADA {{numJornada}}</ion-label></ion-item>
+  <ion-row class="ion-text-center">
+    <ion-col>Puesto</ion-col>
+    <ion-col size="5">Equipo</ion-col>
+    <ion-col>Puntos</ion-col>
+    <ion-col>GF</ion-col>
+    <ion-col>GC</ion-col>
+  </ion-row>
+
+  <ion-row  *ngFor="let item of clasificacion" class="ion-text-center">
+    <ion-col>{{item.$posicion}}</ion-col>
+    <ion-col size="5">{{item.$nombre}}</ion-col>
+    <ion-col>{{item.$puntos}}</ion-col>
+    <ion-col >{{item.$GF}}</ion-col>
+    <ion-col>{{item.$GC}}</ion-col>
+  </ion-row>
+  
+</ion-content>
+
+<ion-footer>
+  
+  <ion-item>
+    
+      <ion-button *ngIf="!habilitado" slot="start" expand="block" color="medium" (click)="cambiarAnterior(numJornada-1)">Anterior
+        <ion-icon slot="start" name="chevron-back-circle"></ion-icon>
+      </ion-button>
+
+      <ion-button *ngIf="habilitado" slot="end" expand="block" color="danger" (click)="jugarJornada(numJornada+1)">Jugar
+        <ion-icon name="play-circle-outline"></ion-icon>
+      </ion-button>
+   
+      <ion-button *ngIf="!habilitado" slot="end" expand="block" color="success" (click)="cambiarSiguiente(numJornada+1)">Siguiente
+        <ion-icon slot="end" name="chevron-forward-circle"></ion-icon>
+      </ion-button>
+      
+    
+    
+  </ion-item>
+
+</ion-footer>
